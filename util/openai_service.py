@@ -1,6 +1,6 @@
 import os
 import openai
-from model import PracticeTestItem, UdemyPracticeTestItem, JudgeResultItem
+from util.model import PracticeTestItem, UdemyPracticeTestItem, JudgeResultItem
 
 # 環境変数からAPIキーとエンドポイントを取得
 openai.api_key = os.getenv("AZURE_OPENAI_API_KEY")
