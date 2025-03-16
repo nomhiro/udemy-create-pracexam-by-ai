@@ -1,0 +1,26 @@
+[project]
+name = "create-pracexam-by-ai"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "nomhiro",email = "nomhiro1204@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "prompty[azure] (>=0.1.47,<0.2.0)",
+    "pydantic (>=2.10.6,<3.0.0)"
+]
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry]
+package-mode = false
+
+[tool.poetry.group.dev.dependencies]
+ruff = "^0.9.5"
+mypy = "^1.15.0"
+pytest = "^8.3.4"
+ipykernel = "^6.29.5"

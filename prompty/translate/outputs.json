@@ -1,0 +1,101 @@
+{
+  "type": "json_schema",
+  "json_schema": {
+    "name": "PracticeTestItem",
+    "description": "試験問題",
+    "strict": true,
+    "schema": {
+      "type": "object",
+      "properties": {
+        "question": {
+          "type": "string",
+          "description": "翻訳された問題文"
+        },
+        "question_type": {
+          "type": "string",
+          "description": "問題の回答形式"
+        },
+        "answer_option1": {
+          "type": "string",
+          "description": "選択肢1"
+        },
+        "explanation1": {
+          "type": "string",
+          "description": "選択肢1の解説"
+        },
+        "answer_option2": {
+          "type": "string",
+          "description": "選択肢2"
+        },
+        "explanation2": {
+          "type": "string",
+          "description": "選択肢2の解説"
+        },
+        "answer_option3": {
+          "type": "string",
+          "description": "選択肢3"
+        },
+        "explanation3": {
+          "type": "string",
+          "description": "選択肢3の解説"
+        },
+        "answer_option4": {
+          "type": "string",
+          "description": "選択肢4"
+        },
+        "explanation4": {
+          "type": "string",
+          "description": "選択肢4の解説"
+        },
+        "answer_option5": {
+          "type": "string",
+          "description": "選択肢5"
+        },
+        "explanation5": {
+          "type": "string",
+          "description": "選択肢5の解説"
+        },
+        "answer_option6": {
+          "type": "string",
+          "description": "選択肢6"
+        },
+        "explanation6": {
+          "type": "string",
+          "description": "選択肢6の解説"
+        },
+        "correct_answers": {
+          "type": "string",
+          "description": "正解の選択肢"
+        },
+        "overall_explanation": {
+          "type": "string",
+          "description": "全体の解説"
+        },
+        "domain": {
+          "type": "string",
+          "description": "問題の出題分野"
+        }
+      },
+      "required": [
+        "question",
+        "question_type",
+        "answer_option1",
+        "explanation1",
+        "answer_option2",
+        "explanation2",
+        "answer_option3",
+        "explanation3",
+        "answer_option4",
+        "explanation4",
+        "answer_option5",
+        "explanation5",
+        "answer_option6",
+        "explanation6",
+        "correct_answers",
+        "overall_explanation",
+        "domain"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
