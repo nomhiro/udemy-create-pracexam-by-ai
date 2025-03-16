@@ -7,6 +7,8 @@
 - 過去問の情報をもとに、詳細な解説を追加する。※Udemyの試験問題のCSV形式に変換する
 - 元の試験問題（csv ファイル）と詳細解説追加後の試験問題（csv ファイル）を渡して、結果の評価をする。
 
+https://www.youtube.com/watch?v=RaEJStqLsIw
+
 ## 使い方
 
 ### プロジェクトの clone
