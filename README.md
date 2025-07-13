@@ -1,11 +1,11 @@
-# Azure 資格試験問題の作成プロジェクト
+# 実践試験問題作成プロジェクト
 
-本リポジトリには Azure の資格試験を Azure OpenAI Service を使って翻訳するPythonファイルが含まれています。
+本リポジトリには Azure OpenAI Service を使って試験問題に詳細解説を追加し、Udemy形式のCSVに変換するPythonプロジェクトが含まれています。
 
-本ノートブックを使うことで以下のことができます。
+本プロジェクトを使うことで以下のことができます。
 
-- 過去問の情報をもとに、詳細な解説を追加する。※Udemyの試験問題のCSV形式に変換する
-- 元の試験問題（csv ファイル）と詳細解説追加後の試験問題（csv ファイル）を渡して、結果の評価をする。
+- 過去問の情報をもとに、詳細な解説を追加する（Udemyの試験問題のCSV形式に変換）
+- 元の試験問題（csv ファイル）と詳細解説追加後の試験問題（csv ファイル）を渡して、結果の評価をする
 
 https://www.youtube.com/watch?v=RaEJStqLsIw
 
@@ -16,19 +16,18 @@ https://www.youtube.com/watch?v=RaEJStqLsIw
 はじめに本リポジトリを clone します。
 
 ```sh
-git clone https://github.com/azpoc-lab/mcp-translate-notebook.git
+git clone <このリポジトリのURL>
 ```
 
 次に VSCode を使ってプロジェクトを開きます。
 
 ```sh
-code ./mcp-translate-notebook
+code ./create-pracexam-by-ai
 ```
 
 ### 実行環境のセットアップ
 
-ノートブックの実行には`python`と`poetry`が必要です。  
-[`asdf`](https://asdf-vm.com/)を利用している場合は[`.tool-versions`](./.tool-versions)のファイルの情報から`python`と`poetry`のバージョンを参照できます。
+プロジェクトの実行には`python`（3.11系）と`poetry`（2系）が必要です。
 
 `poetry`を使って依存関係を解決してください。
 
@@ -79,17 +78,46 @@ AI推論後の csv ファイルは以下の構造になります。
 | ------------------ | ---------------- | ---------------- | ------------------------ | ---------------- | ----------------------- | ---------------- | ------------------------ | ----------------- | ------------------------ | ---------------- | ----------------------- | ---------------- | ----------------------- | -------------------- | ------------------- | ---------------- |
 | <英語の試験問題文> | <問題の出題形式> | <回答の選択肢 1> | <回答の選択肢 1 の説明>  | <回答の選択肢 2> | <回答の選択肢 2 の説明> | <回答の選択肢 3> | <回答の選択肢 3 の説明>  | <回答の選択肢 4>  | <回答の選択肢 4 の説明>  | <回答の選択肢 5> | <回答の選択肢 5 の説明> | <回答の選択肢 6> | <回答の選択肢 6 の説明> | <正解の選択肢の番号> | <解説>              | <問題の出題分野> |
 
-### ノートブックの実行
+### プロジェクトの実行
 
-`main_explanation.py`を実行することで、指定した csv ファイルの内容を Azure OpenAI Service を使って翻訳し、詳細解説を追加した csv ファイルを出力します。
+#### 詳細解説の追加
 
-実行は、以下のコマンドを実行してください。
+`main_explanation.py`を実行することで、指定した csv ファイルの内容を Azure OpenAI Service を使って詳細解説を追加し、Udemy形式の csv ファイルを出力します。
 
 ```sh
 poetry run python main_explanation.py
 ```
 
+#### 結果の評価
+
+`main_judge.py`を実行することで、元の試験問題と詳細解説追加後の試験問題を比較評価します。
+
+```sh
+poetry run python main_judge.py
+```
+
 ---
+
+## プロジェクト構成
+
+```
+/
+├── data/                           # データファイル
+│   ├── ProjectManagement_Sample.csv         # 入力用サンプルCSV
+│   ├── ProjectManagement_Sample_modified.csv # 出力用CSV
+│   └── sample/                     # サンプルデータ
+├── prompty/                        # プロンプトファイル
+│   ├── translate/                  # 詳細解説追加用プロンプト
+│   └── judge/                      # 評価用プロンプト
+├── util/                           # ユーティリティモジュール
+│   ├── model.py                    # データモデル定義
+│   ├── openai_service.py          # Azure OpenAI Service連携
+│   └── udemy_csv_convert.py       # CSV変換ユーティリティ
+├── main_explanation.py             # 詳細解説追加メイン処理
+├── main_judge.py                  # 評価メイン処理
+├── pyproject.toml                 # Poetry設定ファイル
+└── README.md                      # 本ファイル
+```
 
 ## 技術要素
 
@@ -97,8 +125,8 @@ poetry run python main_explanation.py
   - Python 3.11 系
   - Poetry 2 系
 - ライブラリ
-  - [prompty](https://github.com/microsoft/prompty)
-  - [Pydantic](https://docs.pydantic.dev/latest/)
+  - [prompty](https://github.com/microsoft/prompty) - Azure OpenAI Service連携
+  - [Pydantic](https://docs.pydantic.dev/latest/) - データモデル定義
 - プロンプトファイル
-  - 翻訳プロンプト [notebooks/prompty/translate/main.prompty](./notebooks/prompty/translate/main.prompty)
-  - 評価プロンプト [notebooks/prompty/judge/main.prompty](./notebooks/prompty/judge/main.prompty)
+  - 詳細解説追加プロンプト [prompty/translate/main.prompty](./prompty/translate/main.prompty)
+  - 評価プロンプト [prompty/judge/main.prompty](./prompty/judge/main.prompty)
